@@ -1,4 +1,12 @@
-fetch("http://localhost:8080")
+var url  = "http://localhost:8080";
+
+/**
+ * función GET que se ejecutará cada x milisec para revisar si hay mensajes que recibir (linea 67)
+ */
+
+let GET = () => {
+
+  fetch(url)
   .then(response => {
     if (response.ok) {
       return response.text();
@@ -13,13 +21,25 @@ fetch("http://localhost:8080")
     console.log("Error en la solicitud: " + error.message);
   });
 
-  var data = {
+}
 
-    key1: "value1",
-    key2: "value2"
-  };
+/**
+ * El método POST se ejecutará al envío del formulario ??? El botón está funcionando, llega el mensaje al backend (probado)
+ * 
+ * Actualmente manda lo que está declado dentro de la función, el objetivo es invocar a la funcion POST(data) siendo data un JSON en el que sea:
+ * key1: idmensaje(hash??)
+ * key2: idcliente(hash??)
+ * key3: mensaje
+ * key4: hora y fecha del mensaje
+ */
 
-  var url  = "http://localhost:8080";
+let POST = (/*data*/) => {
+
+    var data = {
+
+      key1: "value1",
+      key2: "value2"
+    };
 
   fetch(url, {
     method: "POST",
@@ -41,3 +61,7 @@ fetch("http://localhost:8080")
   .catch(error => {
     console.log("Error en la solicitud: " + error.message);
   });
+
+}
+
+setInterval(GET(), 500); //Creo que esto está funcionando--- hay que probarlo mejor
