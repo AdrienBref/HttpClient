@@ -1,7 +1,7 @@
 var url  = "http://localhost:8080";
 
 /**
- * función GET que se ejecutará cada x milisec para revisar si hay mensajes que recibir (linea 67)
+ * función GET que se ejecutará cada x milisec para revisar si hay mensajes que recibir (linea 83)
  */
 
 let GET = () => {
@@ -33,13 +33,7 @@ let GET = () => {
  * key4: hora y fecha del mensaje
  */
 
-let POST = (/*data*/) => {
-
-    var data = {
-
-      key1: "value1",
-      key2: "value2"
-    };
+let POST = (data) => {
 
   fetch(url, {
     method: "POST",
@@ -62,6 +56,28 @@ let POST = (/*data*/) => {
     console.log("Error en la solicitud: " + error.message);
   });
 
+}
+
+/**
+ * Esta función cogeria los valores del futuro formulario y los metería en un objeto literal para mandarlo al post como argumento, 
+ * igual es waltraper pero creo que funciona. Si te fijas en el HTML llamo a esta funcion con el button  ya sabes, como en los ejercicios de Rodri con PHP)
+ */
+
+let toJson = () => {
+
+  let key1 = document.getElementById("idmensaje").value
+  let key2 = document.getElementById("idcliente").value
+  let key3 = document.getElementById("mensaje").value
+  let key4 = document.getElementById("messageDateHour").value
+
+  let jsonMessage = {
+    value1: key1,
+    value2: key2,
+    value3: key3,
+    value4: key4,
+  }
+
+  POST(jsonMessage);
 }
 
 setInterval(GET(), 500); //Creo que esto está funcionando--- hay que probarlo mejor
