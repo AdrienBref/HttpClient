@@ -14,8 +14,7 @@ fetch("http://localhost:8080")
   });
 
   var data = {
-    // Aquí puedes definir los datos que deseas enviar en el cuerpo de la solicitud
-    // Pueden ser objetos, arrays, o cualquier otra estructura de datos válida
+
     key1: "value1",
     key2: "value2"
   };
@@ -25,9 +24,9 @@ fetch("http://localhost:8080")
   fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json" // Establece el tipo de contenido del cuerpo de la solicitud
+      "Content-Type": "application/json" 
     },
-    body: JSON.stringify(data) // Convierte los datos en formato JSON y los envía en el cuerpo de la solicitud
+    body: JSON.stringify(data) 
   })
   .then(response => {
     if (response.ok) {
