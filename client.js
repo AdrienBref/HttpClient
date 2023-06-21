@@ -5,25 +5,32 @@ var minutes = dateHour.getMinutes();
 var day = dateHour.getDay();
 var month = dateHour.getMonth();
 var year = dateHour.getFullYear();
+var i = 0;
+const randomInteger = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
+const clientId = randomInteger;
+
 
 /**
  * función GET que se ejecutará cada x milisec para revisar si hay mensajes que recibir (linea 83)
  */
 
 let GET = () => {
-
   fetch(url)
   .then(response => {
     if (response.ok) {
       return response.text();
     } else {
+      flagConn = false;
       throw new Error("Error en la solicitud. Código de estado: " + response.status);
     }
   })
   .then(responseText => {
     console.log("Respuesta del servidor: " + responseText);
+    i++;
+    console.log(i);
   })
   .catch(error => {
+    flagConn = false;
     console.log("Error en la solicitud: " + error.message);
   });
 
@@ -43,9 +50,6 @@ let POST = (data) => {
   console.log("hola caracola");
   fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json" 
-    },
     body: JSON.stringify(data) 
   })
   .then(response => {
@@ -87,4 +91,6 @@ let toJson = () => {
   POST(jsonMessage);
 }
 
-setInterval(GET(), 500); //Creo que esto está funcionando--- hay que probarlo mejor
+
+  setInterval(GET, 500); //Creo que esto está funcionando--- hay que probarlo mejor
+
