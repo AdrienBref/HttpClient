@@ -1,4 +1,10 @@
 var url  = "http://localhost:8080";
+var dateHour = new Date();
+var hour = dateHour.getHours();
+var minutes = dateHour.getMinutes();
+var day = dateHour.getDay();
+var month = dateHour.getMonth();
+var year = dateHour.getFullYear();
 
 /**
  * función GET que se ejecutará cada x milisec para revisar si hay mensajes que recibir (linea 83)
@@ -34,7 +40,7 @@ let GET = () => {
  */
 
 let POST = (data) => {
-
+  console.log("hola caracola");
   fetch(url, {
     method: "POST",
     headers: {
@@ -65,10 +71,11 @@ let POST = (data) => {
 
 let toJson = () => {
 
-  let key1 = document.getElementById("idmensaje").value
-  let key2 = document.getElementById("idcliente").value
-  let key3 = document.getElementById("mensaje").value
-  let key4 = document.getElementById("messageDateHour").value
+  let key1 = "asdh89a7dqwehr8wefahpodjapoAUSDSIDHkjasida";
+  let key2 = "Adrián"
+  let key3 = document.getElementById('message').value;
+  let key4 = hour + ":" + minutes;
+
 
   let jsonMessage = {
     value1: key1,
