@@ -1,4 +1,4 @@
-var url  = "http://localhost:8080";
+var url  = "http://localhost:8081";
 var dateHour = new Date();
 var hour = dateHour.getHours();
 var minutes = dateHour.getMinutes();
@@ -7,12 +7,17 @@ var month = dateHour.getMonth();
 var year = dateHour.getFullYear();
 var i = 0;
 const randomInteger = Math.floor(Math.random() * (9999 - 0 + 1)) + 0;
-const clientId = randomInteger;
 
+let genUniqueId = () => {
+  const timeStamp = Date.now();
+  const randomNum =   Math.random();
 
-/**
- * función GET que se ejecutará cada x milisec para revisar si hay mensajes que recibir (linea 83)
- */
+  const id = `${timeStamp}_${randomNum}`;
+  
+  return id;
+}
+
+let id = null;
 
 let GET = () => {
   fetch(url)
@@ -75,7 +80,11 @@ let POST = (data) => {
 
 let toJson = () => {
 
-  let key1 = "asdh89a7dqwehr8wefahpodjapoAUSDSIDHkjasida";
+  if (id === null) {
+    id = genUniqueId(); // Generar un único ID si aún no se ha generado
+  }
+
+  let key1 = id;
   let key2 = "Adrián"
   let key3 = document.getElementById('message').value;
   let key4 = hour + ":" + minutes;
@@ -89,6 +98,7 @@ let toJson = () => {
   }
 
   POST(jsonMessage);
+  document.getElementById('message').value = "";
 }
 
 
